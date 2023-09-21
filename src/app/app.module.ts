@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { StackedChartComponent } from './stacked-chart/stacked-chart.component';
+import { MeterComponent } from './meter/meter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    StackedChartComponent,
+    MeterComponent
   ],
   imports: [
     BrowserModule,
