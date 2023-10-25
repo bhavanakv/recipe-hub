@@ -32,7 +32,7 @@ export class PieChartComponent {
         }],
       },
       options: {
-        aspectRatio: 5
+        aspectRatio: 3
       }
 
     });

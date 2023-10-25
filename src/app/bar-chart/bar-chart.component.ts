@@ -27,7 +27,7 @@ createChart(){
       ]
     },
     options: {
-      aspectRatio:8
+      aspectRatio: 2
     }
     
   });

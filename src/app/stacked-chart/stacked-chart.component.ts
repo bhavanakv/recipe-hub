@@ -36,7 +36,7 @@ export class StackedChartComponent {
             text: 'Stacked Bar chart for pollution status'
           },
         },
-        aspectRatio: 8,
+        aspectRatio: 3,
         indexAxis: 'y',
         scales: {
           x: {

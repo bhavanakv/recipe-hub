@@ -1,0 +1,29 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #333; /* Choose your desired background color */
+    padding: 20px;
+  }
+  
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 0;
+    display: block;
+  }
+  
+  .sidebar a:hover {
+    color: #f89223; /* Change color on hover */
+  }
+
+  .bi {
+    color: #f89223;
+    padding-right: 5px;
+  }
+
+  .nav {
+    margin-top: 30px;
+  }

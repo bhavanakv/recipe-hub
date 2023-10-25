@@ -7,6 +7,8 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { StackedChartComponent } from './stacked-chart/stacked-chart.component';
 import { MeterComponent } from './meter/meter.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { MeterComponent } from './meter/meter.component';
     PieChartComponent,
     BarChartComponent,
     StackedChartComponent,
-    MeterComponent
+    MeterComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
