@@ -1,5 +1,6 @@
 .sidebar {
     position: fixed;
+    margin-top: 55px;
     top: 0;
     left: 0;
     height: 100%;

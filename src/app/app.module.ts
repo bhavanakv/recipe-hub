@@ -9,6 +9,7 @@ import { StackedChartComponent } from './stacked-chart/stacked-chart.component';
 import { MeterComponent } from './meter/meter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     StackedChartComponent,
     MeterComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule,

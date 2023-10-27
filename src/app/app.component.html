@@ -1,42 +1,4 @@
-<h1>Recipe hub</h1>
-<div class="container-fluid">
-    <div class="row">
-      <app-sidebar></app-sidebar>
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-
-        </div>
-        <div class="col-md-4">
-            <div class="card" id="data">
-                <div class="card-body">
-                    <h5 class="card-title">Nutritional Breakdown</h5>
-                    <div class="chart-container">
-                        <app-pie-chart></app-pie-chart>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="data">
-                <div class="card-body">
-                    <h5 class="card-title">Recipe Cost Breakdown</h5>
-                    <div class="chart-container">
-                        <app-bar-chart></app-bar-chart>
-                    </div>
-                </div>
-            </div>
-            <div class="card" id="data">
-                <div class="card-body">
-                    <h5 class="card-title">Composition Overview</h5>
-                    <div class="chart-container">
-                        <app-stacked-chart></app-stacked-chart>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<app-stacked-chart></app-stacked-chart>
-<app-meter></app-meter>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<router-outlet></router-outlet>
+<app-recipe-detail></app-recipe-detail>
