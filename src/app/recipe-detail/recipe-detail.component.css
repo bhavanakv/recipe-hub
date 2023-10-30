@@ -3,13 +3,13 @@
 }
 
 .card-img-top {
-    height: 20rem;
+    height: 25rem;
     position: relative;
 }
 
 .inner {
     position: absolute;
-    top: 60%;
+    top: 35%;
     left: 15%;
     transform: translate(-50%, -10%);
     background-color: rgba(0, 0, 0, 0);
@@ -22,3 +22,38 @@
     margin-top: 10px;
     width: 53rem;
 }
+
+.details {
+    background-color: #eeeeee;
+    margin-top: 5px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.bi {
+    color: #f89223;
+    font-size: 27px;
+}
+
+li {
+    list-style: none;
+}
+
+li::before {
+    content: "\2022";
+    color: #f89223;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.btn {
+    background-color: #f89223;
+    border-color: #f89223;
+    position: absolute;
+    z-index: 1;
+    margin-left: 790px;
+    margin-top: 10px;
+    color: white;
+}
+
