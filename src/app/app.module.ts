@@ -10,6 +10,8 @@ import { MeterComponent } from './meter/meter.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
     MeterComponent,
     SidebarComponent,
     NavbarComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
