@@ -1,0 +1,72 @@
+<div class="header">
+    <div class="inner">
+        <h2 style="color: #f89223"><strong>Do you like cooking?</strong></h2>
+        <div class="inner-text">
+            <p>Welcome to RecipeHub, your culinary companion for creative and delicious cooking. Explore a world of mouthwatering recipes, data-driven insights and meet a vibrant community of food enthusiasts.</p>
+        </div>
+        <div class="input-group">
+            <input class="input-field" type="text" class="form-control" placeholder="Enter a search keyword" aria-label="searchKey" aria-describedby="basic-addon1">
+            <button class="button-field" type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm">
+                <i class="bi bi-search"></i>
+            </button> 
+        </div>
+    </div>
+</div>
+<div class="recent-recipes text-center">
+    <h2 style="color: #f89223"><strong>Recent Recipes</strong></h2>
+    <p>Here are some of the latest delicacies added</p>
+    <div class="row justify-content-center">
+        <div class="card-list">
+            <ng-container *ngFor="let card of recipes">
+              <div class="card" style="margin-left: 15px; margin-bottom: 50px; width: 18rem;">
+                <img src="assets/tartPecan.jpeg" alt="{{ card.name }}" class="card-image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ card.name }}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">View</a>
+                  </div>
+              </div>
+            </ng-container>
+          </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-1">
+            <div class="footer-logo">
+                <img src="{{ logoUrl }}" alt="Logo" width="80" height="80" class="logo">
+            </div>
+        </div>
+        <div class="col-md-5 justify-content-left">
+            <h3 style="color: #f89223">RecipeHub</h3>
+            <p>Thank you for visiting our website. We hope you found the information you were looking for. Please come back soon and stay connected with us on social media!</p>
+        </div>
+        <div class="col-md-3">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Conditions</a></li>
+                <li><a href="#">Cookies</a></li>
+                <li><a href="#">Copyright</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9 footer-copyright" style="margin-top: 40px;">
+            <p>&copy; 2023 Example Company. All rights reserved.</p>
+        </div>
+        <div class="col-md-2 footer-social">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+    </div>
+</div>

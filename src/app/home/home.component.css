@@ -1,0 +1,98 @@
+.header {
+    background-image: url('../../assets/home-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.inner {
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    transform: translate(-50%, -10%);
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    padding: 30px;
+}
+
+.inner-text {
+    width: 400px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #f89223;
+    border-color: #f89223;
+}
+
+.input-field{
+    width: 50px;
+}
+
+.recent-recipes {
+    margin-top: 50px;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    color: rgb(110, 109, 109);
+}
+
+.logo {
+    border-radius: 50%;
+}
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-logo {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .footer-links {
+    flex-direction: column;
+  }
+  
+  .footer-links li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .footer-social {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .footer-social a {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #333;
+    float: right;
+  }
+  
+  .footer-copyright {
+    font-size: 12px;
+    color: #999;
+  }

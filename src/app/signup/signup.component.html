@@ -5,7 +5,7 @@
                 <h3 class="card-title text-center" style="padding-top:50px;"><strong>Signup</strong></h3>
                 <p class="text-center">Explore recipes, submit and save recipes by filling in your details here.</p>
                 <div class="card-body">
-                    <form (ngSubmit)="onSubmit()">
+                    <form>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">@</span>
@@ -25,11 +25,12 @@
                             <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Signup</button>
+                            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Signup</button>
                         </div>
                         <div class="text-center">
                             <p>Already a user? <a href="#">Click here to login!</a></p>
                         </div>
+                        <div class="alert alert-success" role="alert" *ngIf="showAlert">{{ alertMessage }}</div>
                     </form>
                 </div>
             </div>
