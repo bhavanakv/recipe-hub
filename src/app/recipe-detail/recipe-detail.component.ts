@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Recipe } from '../recipe';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -8,7 +9,7 @@ import { Recipe } from '../recipe';
 })
 export class RecipeDetailComponent {
   recipe: Recipe;
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.recipe = {
       id: 0,
       name: "NA",
@@ -19,6 +20,9 @@ export class RecipeDetailComponent {
       difficulty: 0,
       author: "NA"
     }
+    this.route.params.subscribe(params => {
+      console.log(params['id']);
+    })
   }
   ngOnInit() {
     this.recipe = {

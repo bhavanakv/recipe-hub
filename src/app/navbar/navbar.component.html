@@ -1,10 +1,10 @@
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#"><img src="assets/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">RecipeHub</a>
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="activeButton" ariaCurrentWhenActive="page"><img src="assets/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">RecipeHub</a>
     <div class="button-container pull-right">
-    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm">
+    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/login" routerLinkActive="activeButton" ariaCurrentWhenActive="page">
         Login
     </button>
-    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm">
+    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/signup" routerLinkActive="activeButton" ariaCurrentWhenActive="page">
         Register
     </button>
     </div>

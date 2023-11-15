@@ -28,7 +28,7 @@
                             <button type="submit" class="btn btn-primary" (click)="onSubmit()">Signup</button>
                         </div>
                         <div class="text-center">
-                            <p>Already a user? <a href="#">Click here to login!</a></p>
+                            <p>Already a user? <a routerLink="/login" routerLinkActive="activeButton" ariaCurrentWhenActive="page">Click here to login!</a></p>
                         </div>
                         <div class="alert alert-success" role="alert" *ngIf="showAlert">{{ alertMessage }}</div>
                     </form>

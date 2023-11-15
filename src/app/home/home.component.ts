@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent {
   twitterUrl: string = 'https://www.twitter.com/examplecompany';
   instagramUrl: string = 'https://www.instagram.com/examplecompany';
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private router: Router) {
     this.recipes = [];
   }
 
@@ -23,4 +24,8 @@ export class HomeComponent {
     this.recipes = this.recipeService.getRecipes();
   }
 
+  viewRecipe(id: number) {
+    //this.id = 1;
+    this.router.navigate(["/recipe", id])
+  }
 }
