@@ -13,6 +13,7 @@ export class HomeComponent {
 
   recipes: Recipe[];
   headerString: string = '';
+  showSideBar: boolean = false;
   logoUrl: string = 'assets/logo.png';
   facebookUrl: string = 'https://www.facebook.com/recipehub';
   twitterUrl: string = 'https://www.twitter.com/recipehub';
@@ -26,7 +27,8 @@ export class HomeComponent {
     this.recipes = this.recipeService.getRecipes();
     // Displaying the name of the user on home page after successful login.
     // Picking the username from localStorage
-    if(localStorage.hasOwnProperty('username') ) {
+    if (localStorage.hasOwnProperty('username')) {
+      this.showSideBar = true;
       this.headerString = "Hello " + localStorage.getItem('username') + "!";
     }
     else {

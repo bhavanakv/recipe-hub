@@ -1,16 +1,38 @@
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/home" routerLinkActive="activeButton" ariaCurrentWhenActive="page"><img src="assets/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">RecipeHub</a>
-    <div class="button-container pull-right">
-    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/login" routerLinkActive="activeButton" ariaCurrentWhenActive="page">
-        Login
-    </button>
-    <button type ="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/signup" routerLinkActive="activeButton" ariaCurrentWhenActive="page">
-        Register
-    </button>
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="activeButton" ariaCurrentWhenActive="page"><img
+            src="assets/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">RecipeHub</a>
+    <div class="button-container pull-right" *ngIf="!showLogoutButton">
+        <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/login"
+            routerLinkActive="activeButton" ariaCurrentWhenActive="page">
+            Login
+        </button>
+        <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/signup"
+            routerLinkActive="activeButton" ariaCurrentWhenActive="page">
+            Register
+        </button>
     </div>
-    <!----
-    <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm pull-right">
+    <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm pull-right"
+        *ngIf="showLogoutButton" data-bs-toggle="modal" data-bs-target="#logoutModal">
         <i class="bi bi-box-arrow-right"></i>
     </button>
-    -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmLogout()">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
