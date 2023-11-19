@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe';
 import { Router } from '@angular/router';
-import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +23,24 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    this.recipes = this.recipeService.getRecipes();
+    // Retrieving the latest recipes from the database
+    const getRecipesPromise: Promise<Recipe[]> = this.recipeService.getLastThreeRecords();
+    // Converting the promise to list of Recipe objects
+    getRecipesPromise.then((recipeData) => {
+      this.recipes = recipeData.map((recipeData) => {
+        return {
+          id: recipeData.id,
+          name: recipeData.name,
+          time: recipeData.time,
+          cuisine: recipeData.cuisine,
+          ingredients: recipeData.ingredients,
+          steps: recipeData.steps,
+          difficulty: recipeData.difficulty,
+          author: recipeData.author
+        }
+      })
+    });
+
     // Displaying the name of the user on home page after successful login.
     // Picking the username from localStorage
     if (localStorage.hasOwnProperty('username')) {
@@ -41,7 +57,6 @@ export class HomeComponent {
     @param: id of the recipe
   */
   viewRecipe(id: number) {
-    //this.id = 1;
     this.router.navigate(["/recipe", id])
   }
 }

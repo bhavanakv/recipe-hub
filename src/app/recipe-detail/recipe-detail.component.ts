@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Recipe } from '../recipe';
 import { ActivatedRoute } from '@angular/router';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RecipeDetailComponent {
   recipe: Recipe;
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
     this.recipe = {
       id: 0,
       name: "NA",
@@ -20,20 +21,22 @@ export class RecipeDetailComponent {
       difficulty: 0,
       author: "NA"
     }
-    this.route.params.subscribe(params => {
-      console.log(params['id']);
-    })
   }
-  ngOnInit() {
-    this.recipe = {
-      id: 1,
-      name: "Tart Pecan Pie",
-      time: 30,
-      cuisine: "Dessert",
-      ingredients: ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-      steps: ["Step 1", "Step 2", "Step 3"],
-      difficulty: 25,
-      author: "John Doe"
-    }
+
+  async ngOnInit() {
+    let id: number = 0;
+    // Fetching the id of the recipe to be displayed from the URL
+    this.route.params.subscribe(params => {
+      id = +params['id'];
+    });
+    await this.recipeService.addDefaultRecipes();
+    // Fetching the recipe by ID from UI
+    this.recipeService.getRecipeById(id).then(recipe => {
+      if(recipe != undefined) {
+        this.recipe = recipe;
+      }
+      else 
+        console.log("Error in fetching the recipe");
+    });
   }
 }
