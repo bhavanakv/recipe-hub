@@ -6,5 +6,17 @@ export interface Recipe {
     ingredients: string[],
     steps: string[]
     difficulty: number,
-    author: string
+    author: string,
+    pieChart: {
+        labels: string[],
+        data: number[]
+    },
+    barChart: {
+        labels: string[],
+        data: number[]
+    },
+    stackedChart: {
+        labels: string[],
+        data: number[]
+    }
 }

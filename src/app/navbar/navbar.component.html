@@ -1,20 +1,22 @@
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/home" routerLinkActive="activeButton" ariaCurrentWhenActive="page"><img
+    <a class="navbar-brand" routerLink="/home" routerLinkActive="activeButton" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Go to home page" data-bs-placement="bottom"><img
             src="assets/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">RecipeHub</a>
     <div class="button-container pull-right" *ngIf="!showLogoutButton">
         <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/login"
-            routerLinkActive="activeButton" ariaCurrentWhenActive="page">
+            routerLinkActive="activeButton" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Log in to your account" data-bs-placement="bottom">
             Login
         </button>
         <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm" routerLink="/signup"
-            routerLinkActive="activeButton" ariaCurrentWhenActive="page">
+            routerLinkActive="activeButton" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Create a new account" data-bs-placement="bottom">
             Register
         </button>
     </div>
-    <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm pull-right"
-        *ngIf="showLogoutButton" data-bs-toggle="modal" data-bs-target="#logoutModal">
-        <i class="bi bi-box-arrow-right"></i>
-    </button>
+    <div class="d-inline-block pull-right" data-bs-toggle="tooltip" data-bs-placement="top" title="Log out of your account" *ngIf="showLogoutButton" >
+        <button type="button" data-action="codemirror#submit" class="btn btn-success btn-sm"
+            data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <i class="bi bi-box-arrow-right"></i>
+        </button>
+    </div>      
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

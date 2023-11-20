@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 
 @Component({
@@ -6,34 +6,41 @@ import { Chart } from 'chart.js/auto';
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
+
 export class BarChartComponent {
-barChart: any;
+  barChart: any;
+  @Input() labels: string[] = [];
+  @Input() data: number[] = [];
 
-createChart(){
-  
-  this.barChart = new Chart("barChart", {
-    type: 'bar', //this denotes tha type of chart
+  /* 
+    Function to create a bar chart using the labels and the data passed
+  */
+  createChart(){
+      this.barChart = new Chart("barChart", {
+      type: 'bar', 
+      data: {
+        labels: this.labels, 
+        datasets: [
+          {
+            label: "Recipe cost in dollars",
+            data: this.data,
+            backgroundColor: 'blue'
+          }  
+        ] 
+      },
+      options: {
+        aspectRatio: 2
+      }
+    });
+  }
 
-    data: {// values on X-Axis
-      labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
-               '2022-05-14', '2022-05-15', '2022-05-16','2022-05-17', ], 
-       datasets: [
-        {
-          label: "Sales",
-          data: ['467','576', '572', '79', '92',
-               '574', '573', '576'],
-          backgroundColor: 'blue'
-        }  
-      ]
-    },
-    options: {
-      aspectRatio: 2
+  ngOnInit(): void{
+  }
+
+  // Function executed when the labels are populated
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['labels'] && !changes['labels']['firstChange']) {
+      this.createChart();
     }
-    
-  });
-}
-
-ngOnInit(): void{
-  this.createChart();
-}
+  }
 }

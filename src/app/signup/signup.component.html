@@ -25,10 +25,10 @@
                             <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" #password>
                         </div>
                         <div class="text-center">
-                            <button type="button" class="btn btn-primary" (click)="onSubmit(email.value, username.value, password.value)">Signup</button>
+                            <button type="button" class="btn btn-primary" (click)="onSubmit(email.value, username.value, password.value)" data-bs-toggle="tooltip" title="Create a new account" data-bs-placement="bottom">Signup</button>
                         </div>
                         <div class="text-center">
-                            <p>Already a user? <a routerLink="/login" routerLinkActive="activeButton" ariaCurrentWhenActive="page">Click here to login!</a></p>
+                            <p>Already a user? <a routerLink="/login" routerLinkActive="activeButton" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Log in to your account" data-bs-placement="bottom">Click here to login!</a></p>
                         </div>
                         <app-toast type="success" message="{{ alertMessage }}" *ngIf="successToast"></app-toast>
                         <app-toast type="danger" message="{{ alertMessage }}" *ngIf="errorToast"></app-toast>

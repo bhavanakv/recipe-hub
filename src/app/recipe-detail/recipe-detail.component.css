@@ -1,3 +1,15 @@
+.recipe-container {
+    display: flex;
+}
+  
+.sidebar {
+    width: 250px;
+} 
+
+.main-content {
+    flex: 1;
+}
+  
 #data {
     margin-top: 10px;
 }
@@ -9,7 +21,7 @@
 
 .inner {
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 15%;
     transform: translate(-50%, -10%);
     background-color: rgba(0, 0, 0, 0);
@@ -18,9 +30,9 @@
 }
 
 .main {
-    margin-left: 280px;
+    margin-left: 30px;
     margin-top: 10px;
-    width: 53rem;
+    margin-bottom: 10px;
 }
 
 .details {
@@ -52,8 +64,8 @@ li::before {
     border-color: #f89223;
     position: absolute;
     z-index: 1;
-    margin-left: 790px;
-    margin-top: 10px;
+    top: 0;
+    right: 0;
     color: white;
 }
 

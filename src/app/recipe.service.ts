@@ -56,31 +56,67 @@ export class RecipeService {
     const store = transaction.objectStore(this.storeName);
     // List of default recipes if database is empty
     const defaultRecipes = [{
-      name: "Tart Pecan Pie",
+      name: 'Tart Pecan Pie',
+      time: 60,
+      cuisine: 'American',
+      ingredients: ['Pecans', 'Butter', 'Sugar', 'Eggs', 'Vanilla extract', 'Corn syrup', 'Salt', 'Pie crust'],
+      steps: ['Preheat oven', 'Prepare pie crust', 'Mix ingredients', 'Pour into pie crust', 'Bake'],
+      difficulty: 3,
+      author: 'John Doe',
+      pieChart: {
+        labels: ['Carbs', 'Fats', 'Proteins', 'Others'],
+        data: [40, 35, 15, 10] 
+      },
+      barChart: {
+        labels: ['Pecans', 'Butter', 'Sugar', 'Eggs', 'Vanilla extract', 'Corn syrup', 'Salt', 'Pie crust'],
+        data: [8, 6, 4, 3, 2, 2, 1, 4] 
+      },
+      stackedChart: {
+        labels: ['Pecans', 'Butter', 'Sugar', 'Eggs', 'Vanilla extract', 'Corn syrup', 'Salt', 'Pie crust'],
+        data: [40, 20, 15, 10, 5, 5, 3, 2] 
+      }
+    },
+    {
+      name: 'Pesto Pasta',
       time: 30,
-      cuisine: "Dessert",
-      ingredients: ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-      steps: ["Step 1", "Step 2", "Step 3"],
-      difficulty: 25,
-      author: "John Doe"
+      cuisine: 'Italian',
+      ingredients: ['Pasta', 'Basil leaves', 'Pine nuts', 'Garlic', 'Olive oil', 'Parmesan cheese', 'Salt', 'Pepper'],
+      steps: ['Boil pasta', 'Prepare pesto sauce', 'Mix pasta and sauce', 'Season with cheese, salt, and pepper'],
+      difficulty: 2,
+      author: 'Bhavana',
+      pieChart: {
+        labels: ['Carbs', 'Fats', 'Proteins', 'Others'],
+        data: [60, 20, 15, 5] 
+      },
+      barChart: {
+        labels: ['Pasta', 'Basil leaves', 'Pine nuts', 'Garlic', 'Olive oil', 'Parmesan cheese', 'Salt', 'Pepper'],
+        data: [3, 2, 4, 2, 2, 5, 1, 1] 
+      },
+      stackedChart: {
+        labels: ['Pasta', 'Basil leaves', 'Pine nuts', 'Garlic', 'Olive oil', 'Parmesan cheese', 'Salt', 'Pepper'],
+        data: [40, 25, 20, 5, 2, 3, 2, 3] 
+      }
     },
     {
-      name: "Pesto Pasta",
-      time: 50,
-      cuisine: "Italian",
-      ingredients: ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-      steps: ["Step 1", "Step 2", "Step 3"],
-      difficulty: 20,
-      author: "Bhavana"
-    },
-    {
-      name: "Butter Chicken",
-      time: 90,
-      cuisine: "Indian",
-      ingredients: ["Ingredient 1", "Ingredient 2", "Ingredient 3"],
-      steps: ["Step 1", "Step 2", "Step 3"],
-      difficulty: 35,
-      author: "Bhanutheja"
+      name: 'Butter Chicken',
+      time: 45,
+      cuisine: 'Indian',
+      ingredients: ['Chicken', 'Yogurt', 'Tomato sauce', 'Cream', 'Butter', 'Spices', 'Onions', 'Garlic'],
+      steps: ['Marinate chicken', 'Cook onions and spices', 'Add chicken and sauces', 'Simmer', 'Garnish'],
+      difficulty: 3,
+      author: 'Bhanutheja',
+      pieChart: {
+        labels: ['Proteins', 'Fats', 'Carbs', 'Others'],
+        data: [40, 35, 20, 5] 
+      },
+      barChart: {
+        labels: ['Chicken', 'Yogurt', 'Tomato sauce', 'Cream', 'Butter', 'Spices', 'Onions', 'Garlic'],
+        data: [10, 5, 4, 6, 8, 3, 2, 3] 
+      },
+      stackedChart: {
+        labels: ['Chicken', 'Yogurt', 'Tomato sauce', 'Cream', 'Butter', 'Spices', 'Onions', 'Garlic'],
+        data: [40, 25, 15, 10, 10, 5, 3, 2] 
+      }
     }];
     const recordCount = store.getAll();
     // Add the default recipes only if the length of the database is 0
@@ -144,7 +180,6 @@ export class RecipeService {
     const store = transaction.objectStore(this.storeName);
     // Fetching recipe based on ID passed from UI
     const request = store.get(id);
-
     // Return the recipe if found otherwise undefined value is returned
     return new Promise<Recipe | undefined>((resolve) => {
       request.onsuccess = () => {

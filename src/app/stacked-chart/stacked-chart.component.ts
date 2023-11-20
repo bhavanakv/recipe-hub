@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 
 @Component({
@@ -9,34 +9,41 @@ import { Chart } from 'chart.js/auto';
 export class StackedChartComponent {
 
   stackedChart: any;
+  @Input() labels: string[] = [];
+  @Input() data: number[] = [];
 
+  /* 
+    Function to create stacked bar chart using the labels and data passed
+  */
   createChart() {
+    let dataset: any[] = [];
+    const backgroundColors: string[] = ['pink', 'purple', 'yellow', 'blue','red', 'green', 'orange', ];
+    let i = 0;
+
+    // Creating dataset array needed for the chart
+    this.labels.forEach(element => {
+      dataset[i] = {
+        label: element,
+        backgroundColor: backgroundColors[i],
+        data: [this.data[i]]
+      }
+      i++;
+    });
+
     this.stackedChart = new Chart("compositionChart", {
       type: 'bar',
       data: {
-        labels: ["bike"],
-        datasets: [{
-          label: 'worst',
-          backgroundColor: "blue",
-          data: [17],
-        }, {
-          label: 'Okay',
-          backgroundColor: "green",
-          data: [14],
-        }, {
-          label: 'bad',
-          backgroundColor: "red",
-          data: [2],
-        }],
+        labels: ["% of components"],
+        datasets: dataset,
       },
       options: {
         plugins: {
           title: {
             display: true,
-            text: 'Stacked Bar chart for pollution status'
+            text: 'Percentage of ingredients'
           },
         },
-        aspectRatio: 3,
+        aspectRatio: 1.75,
         indexAxis: 'y',
         scales: {
           x: {
@@ -51,6 +58,12 @@ export class StackedChartComponent {
   }
 
   ngOnInit(): void {
-    this.createChart();
+  }
+
+  // Function executed when there are changes in labels
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['labels'] && !changes['labels']['firstChange']) {
+      this.createChart();
+    }
   }
 }

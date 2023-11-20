@@ -36,7 +36,10 @@ export class HomeComponent {
           ingredients: recipeData.ingredients,
           steps: recipeData.steps,
           difficulty: recipeData.difficulty,
-          author: recipeData.author
+          author: recipeData.author,
+          pieChart: recipeData.pieChart,
+          barChart: recipeData.barChart,
+          stackedChart: recipeData.stackedChart
         }
       })
     });

@@ -18,7 +18,7 @@
                     <input class="input-field" type="text" class="form-control" placeholder="Enter a search keyword"
                         aria-label="searchKey" aria-describedby="basic-addon1">
                     <button class="button-field" type="button" data-action="codemirror#submit"
-                        class="btn btn-success btn-sm">
+                        class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Search for recipes" data-bs-placement="bottom">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
@@ -36,7 +36,7 @@
                                 <h5 class="card-title">{{ card.name }}</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a (click)="viewRecipe(card.id)" class="btn btn-primary">View</a>
+                                <a (click)="viewRecipe(card.id)" class="btn btn-primary" data-bs-toggle="tooltip" title="View recipe details" data-bs-placement="bottom">View</a>
                             </div>
                         </div>
                     </ng-container>
@@ -79,9 +79,9 @@
                     <p>&copy; 2023 Example Company. All rights reserved.</p>
                 </div>
                 <div class="col-md-2 footer-social">
-                    <a href="#"><i class="bi bi-facebook"></i></a>
-                    <a href="#"><i class="bi bi-twitter"></i></a>
-                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#" data-bs-toggle="tooltip" title="Connect with us using facebook" data-bs-placement="bottom"><i class="bi bi-facebook"></i></a>
+                    <a href="#" data-bs-toggle="tooltip" title="Connect with us using twitter" data-bs-placement="bottom"><i class="bi bi-twitter"></i></a>
+                    <a href="#" data-bs-toggle="tooltip" title="Connect with us using instagram" data-bs-placement="bottom"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>

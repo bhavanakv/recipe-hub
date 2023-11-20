@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 
 @Component({
@@ -7,38 +7,42 @@ import { Chart } from 'chart.js/auto';
   styleUrls: ['./pie-chart.component.css']
 })
 
+
 export class PieChartComponent {
   chart: any;
+  @Input() labels: string[] = [];
+  @Input() data: number[] = [];
 
+  /* 
+    Function to create pie chart using the labels and data passed
+  */
   createChart() {
-
+    const colors: string[] = ['red', 'green', 'orange', 'pink', 'blue', 'yellow', 'violet'];
+    let colorsToFill: string[] = colors.slice(0,this.data.length);
     this.chart = new Chart("nutritionChart", {
-      type: 'pie', //this denotes tha type of chart
-
-      data: {// values on X-Axis
-        labels: ['Red', 'Pink', 'Green', 'Yellow', 'Orange', 'Blue',],
+      type: 'pie', 
+      data: {
+        labels: this.labels,
         datasets: [{
-          label: 'My First Dataset',
-          data: [300, 240, 100, 432, 253, 34],
-          backgroundColor: [
-            'red',
-            'pink',
-            'green',
-            'yellow',
-            'orange',
-            'blue',
-          ],
+          data: this.data,
+          backgroundColor: colorsToFill,
           hoverOffset: 4
         }],
       },
       options: {
-        aspectRatio: 3
+        aspectRatio: 2
       }
 
     });
   }
 
   ngOnInit(): void {
-    this.createChart();
+  }
+
+  // Function executed when there is a change in labels
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['labels'] && !changes['labels']['firstChange']) {
+      this.createChart();
+    }
   }
 }

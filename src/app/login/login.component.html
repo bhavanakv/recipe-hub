@@ -19,13 +19,13 @@
                             <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" #password>
                         </div>
                         <div class="text-center">
-                            <button type="button" (click)="onSubmit(name.value, password.value)" class="btn btn-primary">Login</button>
+                            <button type="button" (click)="onSubmit(name.value, password.value)" class="btn btn-primary" data-bs-toggle="tooltip" title="Log in to your account" data-bs-placement="bottom">Login</button>
                         </div>
                         <div class="text-right">
-                            <a href="#">Forgot Password?</a>
+                            <a href="#" data-bs-toggle="tooltip" title="Reset your password" data-bs-placement="bottom">Forgot Password?</a>
                         </div>
                         <div class="text-center">
-                            <p>New to RecipeHub? <a routerLink="/signup" routerLinkActive="activeButton" ariaCurrentWhenActive="page">Register Here!</a></p>
+                            <p>New to RecipeHub? <a routerLink="/signup" routerLinkActive="activeButton" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Create a new account" data-bs-placement="bottom">Register Here!</a></p>
                         </div>
                         <app-toast type="success" message="Login Successful!" *ngIf="successToast"></app-toast>
                         <app-toast type="danger" message="Error in login. Please check your credentials or sign up using the link above." *ngIf="errorToast"></app-toast>
