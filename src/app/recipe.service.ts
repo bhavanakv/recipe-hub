@@ -16,7 +16,7 @@ export class RecipeService {
   */
   async openDB(): Promise<IDBDatabase> {
     return new Promise<IDBDatabase>((resolve, reject) => {
-      const request = window.indexedDB.open(this.dbName, 1);
+      const request = window.indexedDB.open(this.dbName, 2);
 
       // Executed when database is not created
       request.onerror = (event) => {

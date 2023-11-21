@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ToastComponent } from './toast/toast.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastComponent } from './toast/toast.component';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    ToastComponent
+    ToastComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

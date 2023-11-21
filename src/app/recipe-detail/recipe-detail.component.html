@@ -55,6 +55,14 @@
     <div class="col-md-4 data">
         <div class="card" id="data">
             <div class="card-body">
+                <h5 class="card-title">Cooking timeline</h5>
+                <div class="chart-container">
+                    <app-progress-bar></app-progress-bar>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="data">
+            <div class="card-body">
                 <h5 class="card-title">Nutritional Breakdown</h5>
                 <div class="chart-container">
                     <app-pie-chart [labels]="pieChartLabels" [data]="pieChartData"></app-pie-chart>
