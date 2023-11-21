@@ -43,7 +43,7 @@ export class StackedChartComponent {
             text: 'Percentage of ingredients'
           },
         },
-        aspectRatio: 1.75,
+        aspectRatio: 2,
         indexAxis: 'y',
         scales: {
           x: {

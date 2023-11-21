@@ -37,6 +37,8 @@ export class HomeComponent {
           steps: recipeData.steps,
           difficulty: recipeData.difficulty,
           author: recipeData.author,
+          prepTime: recipeData.prepTime,
+          cookingTime: recipeData.cookingTime,
           pieChart: recipeData.pieChart,
           barChart: recipeData.barChart,
           stackedChart: recipeData.stackedChart

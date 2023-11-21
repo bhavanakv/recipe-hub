@@ -17,7 +17,7 @@ export class PieChartComponent {
     Function to create pie chart using the labels and data passed
   */
   createChart() {
-    const colors: string[] = ['red', 'green', 'orange', 'pink', 'blue', 'yellow', 'violet'];
+    const colors: string[] = ['#EC7063', '#7DCEA0', 'orange', 'pink', 'blue', 'yellow', 'violet'];
     let colorsToFill: string[] = colors.slice(0,this.data.length);
     this.chart = new Chart("nutritionChart", {
       type: 'pie', 

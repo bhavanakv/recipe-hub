@@ -7,6 +7,8 @@ export interface Recipe {
     steps: string[]
     difficulty: number,
     author: string,
+    prepTime: number,
+    cookingTime: number,
     pieChart: {
         labels: string[],
         data: number[]

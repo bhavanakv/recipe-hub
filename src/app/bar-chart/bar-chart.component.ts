@@ -24,12 +24,12 @@ export class BarChartComponent {
           {
             label: "Recipe cost in dollars",
             data: this.data,
-            backgroundColor: 'blue'
+            backgroundColor: '#D7BDE2'
           }  
         ] 
       },
       options: {
-        aspectRatio: 2
+        aspectRatio: 2.2
       }
     });
   }

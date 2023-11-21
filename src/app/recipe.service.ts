@@ -57,12 +57,14 @@ export class RecipeService {
     // List of default recipes if database is empty
     const defaultRecipes = [{
       name: 'Tart Pecan Pie',
-      time: 60,
+      time: 50,
       cuisine: 'American',
       ingredients: ['Pecans', 'Butter', 'Sugar', 'Eggs', 'Vanilla extract', 'Corn syrup', 'Salt', 'Pie crust'],
       steps: ['Preheat oven', 'Prepare pie crust', 'Mix ingredients', 'Pour into pie crust', 'Bake'],
-      difficulty: 3,
+      difficulty: 2.8,
       author: 'John Doe',
+      prepTime: 20,
+      cookingTime: 30,
       pieChart: {
         labels: ['Carbs', 'Fats', 'Proteins', 'Others'],
         data: [40, 35, 15, 10] 
@@ -78,12 +80,14 @@ export class RecipeService {
     },
     {
       name: 'Pesto Pasta',
-      time: 30,
+      time: 50,
       cuisine: 'Italian',
       ingredients: ['Pasta', 'Basil leaves', 'Pine nuts', 'Garlic', 'Olive oil', 'Parmesan cheese', 'Salt', 'Pepper'],
       steps: ['Boil pasta', 'Prepare pesto sauce', 'Mix pasta and sauce', 'Season with cheese, salt, and pepper'],
-      difficulty: 2,
+      difficulty: 1.2,
       author: 'Bhavana',
+      prepTime: 10,
+      cookingTime: 40,
       pieChart: {
         labels: ['Carbs', 'Fats', 'Proteins', 'Others'],
         data: [60, 20, 15, 5] 
@@ -99,12 +103,14 @@ export class RecipeService {
     },
     {
       name: 'Butter Chicken',
-      time: 45,
+      time: 75,
       cuisine: 'Indian',
       ingredients: ['Chicken', 'Yogurt', 'Tomato sauce', 'Cream', 'Butter', 'Spices', 'Onions', 'Garlic'],
       steps: ['Marinate chicken', 'Cook onions and spices', 'Add chicken and sauces', 'Simmer', 'Garnish'],
-      difficulty: 3,
+      difficulty: 1.8,
       author: 'Bhanutheja',
+      prepTime: 25,
+      cookingTime: 50,
       pieChart: {
         labels: ['Proteins', 'Fats', 'Carbs', 'Others'],
         data: [40, 35, 20, 5] 
