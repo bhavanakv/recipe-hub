@@ -17,7 +17,7 @@
     margin-bottom: 20px;
 }
 
-.btn {
+.btn, .badge {
     background-color: #f89223;
     border-color: #f89223;
     color: white;
@@ -33,4 +33,10 @@
     background-color: #f89223;
     border-color: #f89223;
     accent-color: #f89223;
+}
+
+.custom-file-label::after {
+    background-color: #f89223;
+    border-color: #f89223;
+    color: white;
 }

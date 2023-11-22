@@ -32,8 +32,10 @@ export class HomeComponent {
         return {
           id: recipeData.id,
           name: recipeData.name,
+          description: recipeData.description,
           time: recipeData.time,
           cuisine: recipeData.cuisine,
+          imageUrl: recipeData.imageUrl,
           ingredients: recipeData.ingredients,
           steps: recipeData.steps,
           difficulty: recipeData.difficulty,

@@ -142,9 +142,11 @@ export class RecipeService {
     @param: recipe to be added
   */
   async addRecipe(recipe: any): Promise<void> {
+    console.log("Trying to add");
     const db = await this.openDB();
     const transaction = db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
+    delete recipe['id'];
     // Adding a recipe into the database
     store.add(recipe);
   }

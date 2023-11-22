@@ -24,9 +24,11 @@ export class RecipeDetailComponent {
     this.recipe = {
       id: 0,
       name: "NA",
+      description: "",
       time: 0,
       cuisine: "NA",
       ingredients: [],
+      imageUrl: "",
       steps: [],
       difficulty: 0,
       author: "NA",

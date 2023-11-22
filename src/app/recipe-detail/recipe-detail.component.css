@@ -22,12 +22,13 @@
 
 .inner {
     position: absolute;
-    top: 30%;
-    left: 15%;
+    top: 28%;
+    left: 20%;
     transform: translate(-50%, -10%);
-    background-color: rgba(0, 0, 0, 0);
-    color: #fff;
+    background-color: rgba(0,0,0, 0);
+    color: white;
     padding: 30px;
+    font-weight: bold;
 }
 
 .main {

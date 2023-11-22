@@ -9,10 +9,11 @@
                 <h3 class="card-title text-center" style="padding-top:50px;"><strong>Submit a recipe</strong></h3>
                 <p class="text-center">Fill out these details to submit your recipe to our collection.</p>
                 <hr>
+                <p class="text-center">Fields marked <span style="color: red; margin-left: 2px;">*</span> are required</p>
                 <div class="card-body">
                     <div class="card-body">
                         <div class="input-group mb-3" data-bs-toggle="tooltip" title="Name of your recipe" data-bs-placement="bottom">
-                            <label class="input-group-text">Name</label>
+                            <label class="input-group-text">Name<span style="color: red; margin-left: 2px;">*</span></label>
                             <input type="text" class="form-control" id="name" required #name>
                         </div>
                         <div class="input-group mb-3" data-bs-toggle="tooltip" title="A short description of your recipe" data-bs-placement="bottom">
@@ -20,7 +21,7 @@
                             <input type="text" class="form-control" id="description" #description>
                         </div>
                         <div class="input-group mb-3" data-bs-toggle="tooltip" title="Select cuisine of your recipe from the list" data-bs-placement="bottom">
-                            <label class="input-group-text" for="cuisine">Cuisine</label>
+                            <label class="input-group-text" for="cuisine">Cuisine<span style="color: red; margin-left: 2px;">*</span></label>
                             <select class="form-select" id="cuisine" style="width: 77.5%; border-color: lightgray; border-radius: 4px;" #cuisine>
                               <option selected style="color: lightgrey" value="">Choose cuisine</option>
                               <option value="American">American</option>
@@ -40,6 +41,17 @@
                             <label class="input-group-text">Cooking time</label>
                             <input type="number" class="form-control" id="cookingTime" #cookingTime>
                         </div>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Upload the image of your recipe" data-bs-placement="bottom">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Upload image</span>
+                            </div>
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="fileName">
+                              <label class="custom-file-label" for="fileName">Choose file</label>
+                            </div>
+                        </div>
+                        <h5><span class="badge badge-primary" id="fileNameDisplay"></span></h5>
+                        <app-toast type="danger" message="{{ fileErrorMessage }}" *ngIf="fileErrorToast"></app-toast>
                         <p>Slide through the range to adjust the difficulty level with 1 being easy and 3 being hard</p>
                         <div class="input-group mb-3" data-bs-toggle="tooltip" title="Slide the range to adjust the value" data-bs-placement="bottom">
                             <label for="difficulty" class="input-group-text">Difficulty level</label>
@@ -48,15 +60,17 @@
                         <br>
                         <p>Type your ingredient and click the "+" button to add it to the list. </p>
                         <div class="input-group mb-3" data-bs-toggle="tooltip" title="Add ingredients along with their measurements after hyphen" data-bs-placement="bottom">
-                            <label class="input-group-text">Ingredients</label>
+                            <label class="input-group-text">Ingredients<span style="color: red; margin-left: 2px;">*</span></label>
                             <input type="text" class="form-control" id="ingredients" #ingredient>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="addRecipe(ingredient.value)">+</button>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" (click)="addRecipe(ingredient.value)">+</button>
+                            </div>
                         </div>
                         <h4 id="showInputField"></h4> 
                         <br>
                         <p>List the recipe steps separated by comma</p>
                         <div class="input-group" data-bs-toggle="tooltip" title="Enter steps separated by commas" data-bs-placement="bottom">
-                            <span class="input-group-text">Steps</span>
+                            <span class="input-group-text">Steps<span style="color: red; margin-left: 2px;">*</span></span>
                             <textarea class="form-control" aria-label="Steps" #steps></textarea>
                         </div>
                         <div class="text-center">

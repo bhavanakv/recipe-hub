@@ -1,8 +1,10 @@
 export interface Recipe {
     id: number,
     name: string,
+    description: string,
     time: number,
     cuisine: string,
+    imageUrl: string,
     ingredients: string[],
     steps: string[]
     difficulty: number,
