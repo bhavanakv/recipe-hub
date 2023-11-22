@@ -1,0 +1,35 @@
+.saved-recipes-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.sidebar {
+    width: 250px;
+} 
+
+.main-content {
+    flex: 1;
+}
+
+.main {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.recipe {
+    height: 20px;
+}
+
+.bin {
+    color: #f89223;
+    margin-left: 280px;
+}
+
+.img-fluid {
+    height: 100%;
+}
+
+span.removeLink {
+    cursor: pointer;
+}

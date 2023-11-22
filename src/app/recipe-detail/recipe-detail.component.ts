@@ -65,7 +65,6 @@ export class RecipeDetailComponent {
     this.recipeService.getRecipeById(id).then(recipe => {
       if(recipe != undefined) {
         this.recipe = recipe;
-        console.log(typeof this.recipe.difficulty);
         // Populating the labels and data from the promise object
         this.pieChartLabels = this.recipe.pieChart.labels;
         this.pieChartData = this.recipe.pieChart.data;

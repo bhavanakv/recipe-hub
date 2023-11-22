@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { ToastComponent } from './toast/toast.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { SubmitRecipeComponent } from './submit-recipe/submit-recipe.component';
+import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SubmitRecipeComponent } from './submit-recipe/submit-recipe.component';
     HomeComponent,
     ToastComponent,
     ProgressBarComponent,
-    SubmitRecipeComponent
+    SubmitRecipeComponent,
+    SavedRecipesComponent
   ],
   imports: [
     BrowserModule,
