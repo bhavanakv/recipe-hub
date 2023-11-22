@@ -22,7 +22,8 @@ export class HomeComponent {
     this.recipes = [];
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.recipeService.addDefaultRecipes();
     // Retrieving the latest recipes from the database
     const getRecipesPromise: Promise<Recipe[]> = this.recipeService.getLastThreeRecords();
     // Converting the promise to list of Recipe objects

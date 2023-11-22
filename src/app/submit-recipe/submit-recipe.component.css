@@ -1,0 +1,36 @@
+.submit-recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+  
+.sidebar {
+    width: 250px;
+} 
+
+.main-content {
+    flex: 1;
+}
+
+.main {
+    margin-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #f89223;
+    border-color: #f89223;
+    color: white;
+}
+
+.input-group-text {
+    width: 120px;
+}
+
+#difficulty {
+    width: 75%;
+    margin-left: 10px;
+    background-color: #f89223;
+    border-color: #f89223;
+    accent-color: #f89223;
+}

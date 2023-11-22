@@ -59,7 +59,6 @@ export class RecipeDetailComponent {
       this.showSideBar = true;
     }
 
-    await this.recipeService.addDefaultRecipes();
     // Fetching the recipe by ID from UI
     this.recipeService.getRecipeById(id).then(recipe => {
       if(recipe != undefined) {

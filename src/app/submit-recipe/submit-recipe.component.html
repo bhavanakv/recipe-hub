@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<div class="submit-recipe-container">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="row main-content justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <h3 class="card-title text-center" style="padding-top:50px;"><strong>Submit a recipe</strong></h3>
+                <p class="text-center">Fill out these details to submit your recipe to our collection.</p>
+                <hr>
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Name of your recipe" data-bs-placement="bottom">
+                            <label class="input-group-text">Name</label>
+                            <input type="text" class="form-control" id="name" required #name>
+                        </div>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="A short description of your recipe" data-bs-placement="bottom">
+                            <label class="input-group-text">Description</label>
+                            <input type="text" class="form-control" id="description" #description>
+                        </div>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Select cuisine of your recipe from the list" data-bs-placement="bottom">
+                            <label class="input-group-text" for="cuisine">Cuisine</label>
+                            <select class="form-select" id="cuisine" style="width: 77.5%; border-color: lightgray; border-radius: 4px;" #cuisine>
+                              <option selected style="color: lightgrey" value="">Choose cuisine</option>
+                              <option value="American">American</option>
+                              <option value="Indian">Indian</option>
+                              <option value="Chinese">Chinese</option>
+                              <option value="Italian">Italian</option>
+                              <option value="Mexican">Mexican</option>
+                              <option value="Thai">Thai</option>
+                              <option value="Others">Others</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Preparation time needed in minutes" data-bs-placement="bottom">
+                            <label class="input-group-text">Prep time</label>
+                            <input type="number" class="form-control" id="prepTime" #prepTime>
+                        </div>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Cooking time needed in minutes" data-bs-placement="bottom">
+                            <label class="input-group-text">Cooking time</label>
+                            <input type="number" class="form-control" id="cookingTime" #cookingTime>
+                        </div>
+                        <p>Slide through the range to adjust the difficulty level with 1 being easy and 3 being hard</p>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Slide the range to adjust the value" data-bs-placement="bottom">
+                            <label for="difficulty" class="input-group-text">Difficulty level</label>
+                            <input type="range" class="form-range" min="0" max="3" step="0.1" value="0" id="difficulty" #difficulty>
+                        </div>
+                        <br>
+                        <p>Type your ingredient and click the "+" button to add it to the list. </p>
+                        <div class="input-group mb-3" data-bs-toggle="tooltip" title="Add ingredients along with their measurements after hyphen" data-bs-placement="bottom">
+                            <label class="input-group-text">Ingredients</label>
+                            <input type="text" class="form-control" id="ingredients" #ingredient>
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="addRecipe(ingredient.value)">+</button>
+                        </div>
+                        <h4 id="showInputField"></h4> 
+                        <br>
+                        <p>List the recipe steps separated by comma</p>
+                        <div class="input-group" data-bs-toggle="tooltip" title="Enter steps separated by commas" data-bs-placement="bottom">
+                            <span class="input-group-text">Steps</span>
+                            <textarea class="form-control" aria-label="Steps" #steps></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="button submitButton" class="btn btn-primary" style="margin-top: 20px;" (click)="onSubmit(name.value, description.value, cuisine.value, prepTime.value, cookingTime.value, difficulty.value, steps.value)" data-bs-toggle="tooltip" title="Submit your recipe to our collection" data-bs-placement="bottom">Submit</button>
+                        </div>
+                        <div class="toasts" style="margin-top: 20px; margin-bottom: 50px">
+                            <app-toast type="success" message="{{ alertMessage }}" *ngIf="successToast"></app-toast>
+                            <app-toast type="danger" message="{{ alertMessage }}" *ngIf="errorToast"></app-toast>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

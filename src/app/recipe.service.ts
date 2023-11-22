@@ -129,6 +129,7 @@ export class RecipeService {
     recordCount.onsuccess = (event) => {
       const records = recordCount.result;
       if (!records || records.length === 0) {
+        console.log("Adding default recipes")
         defaultRecipes.forEach(recipe => {
           store.add(recipe);
         }); 

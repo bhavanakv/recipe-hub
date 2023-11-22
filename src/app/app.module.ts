@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ToastComponent } from './toast/toast.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { SubmitRecipeComponent } from './submit-recipe/submit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     SignupComponent,
     HomeComponent,
     ToastComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    SubmitRecipeComponent
   ],
   imports: [
     BrowserModule,
