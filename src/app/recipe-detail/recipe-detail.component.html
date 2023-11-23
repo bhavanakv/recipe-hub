@@ -8,7 +8,7 @@
 <div class="row main-content">
     <div class="col-md-8">
         <div class="card main" [style.width.rem]="showSideBar ? 51:60">
-            <button type="button save" data-action="codemirror#submit" class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Save this recipe to your collection" data-bs-placement="bottom">
+            <button type="button save" data-action="codemirror#submit" class="btn btn-success btn-sm" (click)="saveRecipe()" data-bs-toggle="tooltip" title="Save this recipe to your collection" data-bs-placement="bottom">
                 <i class="bi bi-bookmark" style="color: white;"></i>
             </button>
             <img class="card-img-top" src="assets/{{ recipe.imageUrl }}" alt="Card image cap">
@@ -53,6 +53,8 @@
         </div>
     </div>
     <div class="col-md-4 data">
+        <app-toast type="success" message="Saved recipe to your collection successfully!" *ngIf="successToast"></app-toast>
+        <app-toast type="danger" message="Error in saving recipe. Try again later." *ngIf="errorToast"></app-toast>
         <div class="card" id="data">
             <div class="card-body">
                 <h5 class="card-title">Cooking timeline</h5>

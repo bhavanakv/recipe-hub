@@ -10,6 +10,9 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailComponent {
   recipe: Recipe;
+  id: number = 0;
+  successToast: boolean = false;
+  errorToast: boolean = false;
 
   // Labels and data for the charts
   pieChartLabels: string[] = [];
@@ -50,10 +53,9 @@ export class RecipeDetailComponent {
   }
 
   async ngOnInit() {
-    let id: number = 0;
     // Fetching the id of the recipe to be displayed from the URL
     this.route.params.subscribe(params => {
-      id = +params['id'];
+      this.id = +params['id'];
     });
 
     // Display sidebar only if the user is logged in so that features applicable to registered users are visible
@@ -62,7 +64,7 @@ export class RecipeDetailComponent {
     }
 
     // Fetching the recipe by ID from UI
-    this.recipeService.getRecipeById(id).then(recipe => {
+    this.recipeService.getRecipeById(this.id).then(recipe => {
       if(recipe != undefined) {
         this.recipe = recipe;
         // Populating the labels and data from the promise object
@@ -78,5 +80,23 @@ export class RecipeDetailComponent {
       else 
         console.log("Error in fetching the recipe");
     });
+  }
+
+  async saveRecipe() {
+    let response = await this.recipeService.saveRecipe(this.recipe);
+    if(response) {
+      this.successToast = true;
+      setTimeout(() => {
+        this.errorToast = false;
+        this.successToast = false;
+      },2000);
+    }
+    else {
+      this.errorToast = true;
+      setTimeout(() => {
+        this.errorToast = false;
+        this.successToast = false;
+      },2000);
+    }
   }
 }

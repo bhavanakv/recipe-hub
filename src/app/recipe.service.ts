@@ -14,9 +14,9 @@ export class RecipeService {
   /* 
     Function to create IDBDatabase
   */
-  async openDB(): Promise<IDBDatabase> {
+  async openDB(dbname: string, version: number): Promise<IDBDatabase> {
     return new Promise<IDBDatabase>((resolve, reject) => {
-      const request = window.indexedDB.open(this.dbName, 2);
+      const request = window.indexedDB.open(dbname, version);
 
       // Executed when database is not created
       request.onerror = (event) => {
@@ -51,7 +51,7 @@ export class RecipeService {
     Function to add default recipes to the database if the database is empty
   */
   async addDefaultRecipes() {
-    const db = await this.openDB();
+    const db = await this.openDB('RecipesDB', 2);
     const transaction = await db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
     // List of default recipes if database is empty
@@ -143,7 +143,7 @@ export class RecipeService {
   */
   async addRecipe(recipe: any): Promise<void> {
     console.log("Trying to add");
-    const db = await this.openDB();
+    const db = await this.openDB('RecipesDB', 2);
     const transaction = db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
     delete recipe['id'];
@@ -156,7 +156,7 @@ export class RecipeService {
     @param: recipe to be deleted
   */
   async deleteRecipe(recipe: any): Promise<void> {
-    const db = await this.openDB();
+    const db = await this.openDB('RecipesDB', 2);
     const transaction = db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
     // Deleting the recipe from the database
@@ -167,7 +167,7 @@ export class RecipeService {
     Function to fetch all the recipes from the database
   */
   async getAllRecipes(): Promise<any[]> {
-    const db = await this.openDB();
+    const db = await this.openDB('RecipesDB', 2);
     const transaction = db.transaction([this.storeName], 'readonly');
     const store = transaction.objectStore(this.storeName);
     // Retrieving all the recipes from the database
@@ -184,7 +184,7 @@ export class RecipeService {
     @param: ID of the recipe to be fetched
   */
   async getRecipeById(id: number): Promise<Recipe | undefined> {
-    const db = await this.openDB();
+    const db = await this.openDB('RecipesDB', 2);
     const transaction = db.transaction([this.storeName], 'readonly');
     const store = transaction.objectStore(this.storeName);
     // Fetching recipe based on ID passed from UI
@@ -199,5 +199,65 @@ export class RecipeService {
         resolve(undefined); 
       };
     });
+  }
+
+  /* 
+    Function to save a recipe into user's collection
+    @param: recipe to be saved
+  */
+  async saveRecipe(recipe: any): Promise<boolean>{
+    // Try saving the recipe, if successful then true is retured otherwise false
+    try {
+      const db = await this.openDB('savedRecipesDB', 2);
+      const transaction = db.transaction([this.storeName], 'readwrite');
+      const store = transaction.objectStore(this.storeName);
+      // Creating object to store in savedRecipesDB database
+      const toSaveRecipe = {
+        'author': recipe.author,
+        'name': recipe.name,
+        'time': recipe.time
+      }
+      store.add(toSaveRecipe);
+      return true;
+    }
+    catch(error) {
+      return false;
+    }
+  }
+
+  /* 
+    Function to get the saved recipes from the database
+    @param: username of the user whose recipes needs to be fetched
+  */
+  async getSavedRecipes(username: string): Promise<any[]> {
+    const db = await this.openDB('savedRecipesDB', 2);
+    const transaction = db.transaction([this.storeName], 'readonly');
+    const store = transaction.objectStore(this.storeName);
+    // Retrieving all the recipes from the database
+    const request = store.getAll();
+    return new Promise<any[]>((resolve) => {
+      request.onsuccess = () => {
+        let records = request.result;
+        let savedRecipes: any[] = [];
+        // Looking for recipes whose author name matches username
+        records.forEach((recipe) => {
+          if(recipe.author == username)
+            savedRecipes.push(recipe);
+        });
+        resolve(savedRecipes);
+      };
+    });
+  }
+
+  /* 
+    Function to delete a saved recipe from collection 
+    @param: id of the recipe to be removed
+  */
+  async deleteSavedRecipe(id: number): Promise<void> {
+    const db = await this.openDB('savedRecipesDB', 2);
+    const transaction = db.transaction([this.storeName], 'readwrite');
+    const store = transaction.objectStore(this.storeName);
+    // Deleting the recipe from the database
+    store.delete(id);
   }
 }

@@ -19,14 +19,23 @@ export class SavedRecipesComponent {
   }
 
   async ngOnInit() {
-    this.recipeService.getAllRecipes().then(recipes => {
+    let username = '';
+    if(localStorage.hasOwnProperty('username')) {
+      username = localStorage.getItem('username') + ""; 
+    }
+    // Fetching the saved recipes of user with username
+    this.recipeService.getSavedRecipes(username).then(recipes => {
       this.recipes = recipes;
       console.log(this.recipes);
     });
   }
 
-  removeRecipe() {
-    console.log("Removing recipe");
+  /* 
+    Function to remove a recipe
+    @param: id of the recipe to be removed
+  */
+  removeRecipe(id: number) {
+    console.log("Removing recipe", id);
+    this.recipeService.deleteSavedRecipe(id);
   }
-  
 }
