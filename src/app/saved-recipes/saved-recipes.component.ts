@@ -27,6 +27,9 @@ export class SavedRecipesComponent {
     this.recipeService.getSavedRecipes(username).then(recipes => {
       this.recipes = recipes;
       console.log(this.recipes);
+      if(this.recipes.length == 0) {
+        this.showEmptyMessage = true;
+      }
     });
   }
 
@@ -36,6 +39,19 @@ export class SavedRecipesComponent {
   */
   removeRecipe(id: number) {
     console.log("Removing recipe", id);
+    const cardElement = document.getElementById("card-"+id);
+    if(cardElement) {
+      cardElement.parentElement!.removeChild(cardElement);
+    }
     this.recipeService.deleteSavedRecipe(id);
+    let username = '';
+    if(localStorage.hasOwnProperty('username')) {
+      username = localStorage.getItem('username') + ""; 
+    }
+    this.recipeService.getSavedRecipes(username).then(recipes => {
+      if(recipes.length == 0) {
+        this.showEmptyMessage = true;
+      }
+    });
   }
 }

@@ -205,7 +205,7 @@ export class RecipeService {
     Function to save a recipe into user's collection
     @param: recipe to be saved
   */
-  async saveRecipe(recipe: any): Promise<boolean>{
+  async saveRecipe(recipe: any, username: string): Promise<boolean>{
     // Try saving the recipe, if successful then true is retured otherwise false
     try {
       const db = await this.openDB('savedRecipesDB', 2);
@@ -213,6 +213,7 @@ export class RecipeService {
       const store = transaction.objectStore(this.storeName);
       // Creating object to store in savedRecipesDB database
       const toSaveRecipe = {
+        'username': username,
         'author': recipe.author,
         'name': recipe.name,
         'time': recipe.time
@@ -241,7 +242,7 @@ export class RecipeService {
         let savedRecipes: any[] = [];
         // Looking for recipes whose author name matches username
         records.forEach((recipe) => {
-          if(recipe.author == username)
+          if(recipe.username == username)
             savedRecipes.push(recipe);
         });
         resolve(savedRecipes);

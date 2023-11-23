@@ -21,7 +21,7 @@ export class RecipeDetailComponent {
   barChartData: number[] = [];
   stackedChartLabels: string[] = [];
   stackedChartData: number[] = [];
-  showSideBar: boolean = false;
+  loggedIn: boolean = false;
 
   constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
     this.recipe = {
@@ -60,7 +60,7 @@ export class RecipeDetailComponent {
 
     // Display sidebar only if the user is logged in so that features applicable to registered users are visible
     if(localStorage.hasOwnProperty("username")) {
-      this.showSideBar = true;
+      this.loggedIn = true;
     }
 
     // Fetching the recipe by ID from UI
@@ -83,7 +83,11 @@ export class RecipeDetailComponent {
   }
 
   async saveRecipe() {
-    let response = await this.recipeService.saveRecipe(this.recipe);
+    let username = '';
+    if(localStorage.hasOwnProperty("username")) {
+      username = localStorage.getItem('username') + '';
+    }
+    let response = await this.recipeService.saveRecipe(this.recipe, username);
     if(response) {
       this.successToast = true;
       setTimeout(() => {

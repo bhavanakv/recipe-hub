@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <div class="recipe-container">
-    <ng-container *ngIf="showSideBar">
+    <ng-container *ngIf="loggedIn">
         <div class="sidebar">
-            <app-sidebar *ngIf="showSideBar"></app-sidebar>
+            <app-sidebar *ngIf="loggedIn"></app-sidebar>
         </div>
     </ng-container>
 <div class="row main-content">
     <div class="col-md-8">
-        <div class="card main" [style.width.rem]="showSideBar ? 51:60">
-            <button type="button save" data-action="codemirror#submit" class="btn btn-success btn-sm" (click)="saveRecipe()" data-bs-toggle="tooltip" title="Save this recipe to your collection" data-bs-placement="bottom">
+        <div class="card main" [style.width.rem]="loggedIn ? 51:60">
+            <button type="button save" *ngIf="loggedIn" data-action="codemirror#submit" class="btn btn-success btn-sm" (click)="saveRecipe()" data-bs-toggle="tooltip" title="Save this recipe to your collection" data-bs-placement="bottom">
                 <i class="bi bi-bookmark" style="color: white;"></i>
             </button>
             <img class="card-img-top" src="assets/{{ recipe.imageUrl }}" alt="Card image cap">
