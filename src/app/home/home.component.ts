@@ -17,6 +17,7 @@ export class HomeComponent {
   facebookUrl: string = 'https://www.facebook.com/recipehub';
   twitterUrl: string = 'https://www.twitter.com/recipehub';
   instagramUrl: string = 'https://www.instagram.com/recipehub';
+  searchResults: boolean = false;
 
   constructor(private recipeService: RecipeService, private router: Router) {
     this.recipes = [];
@@ -66,5 +67,10 @@ export class HomeComponent {
   */
   viewRecipe(id: number) {
     this.router.navigate(["/recipe", id])
+  }
+
+  search(searchTerm: string) {
+    console.log("Searching for: ", searchTerm);
+    this.searchResults = true;
   }
 }

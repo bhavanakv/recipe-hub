@@ -16,15 +16,16 @@
                 </div>
                 <div class="input-group">
                     <input class="input-field" type="text" class="form-control" placeholder="Enter a search keyword"
-                        aria-label="searchKey" aria-describedby="basic-addon1">
+                        aria-label="searchKey" aria-describedby="basic-addon1" #searchTerm>
                     <button class="button-field" type="button" data-action="codemirror#submit"
-                        class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Search for recipes" data-bs-placement="bottom">
+                        class="btn btn-success btn-sm" (click)="search(searchTerm.value)" data-bs-toggle="tooltip" title="Search for recipes" data-bs-placement="bottom">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="recent-recipes text-center">
+        <app-search *ngIf="searchResults"></app-search>
+        <div class="recent-recipes text-center" *ngIf="!searchResults">
             <h2 style="color: #f89223"><strong>Recent Recipes</strong></h2>
             <p>Here are some of the latest delicacies added</p>
             <div class="row justify-content-center">
