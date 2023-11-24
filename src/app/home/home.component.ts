@@ -69,8 +69,11 @@ export class HomeComponent {
     this.router.navigate(["/recipe", id])
   }
 
-  search(searchTerm: string) {
-    console.log("Searching for: ", searchTerm);
+  search(searchTerm: HTMLInputElement) {
+    console.log("Searching for: ", searchTerm.value);
+    setTimeout(() => {
+      searchTerm.value = '';
+    }, 100);
     this.searchResults = true;
   }
 }

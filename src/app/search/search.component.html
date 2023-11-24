@@ -21,6 +21,7 @@
                 </div>
                 <div class="search-recipes">
                     <div class="row justify-content-center">
+                        <p class="text-center" *ngIf="showEmptyMessage">No relevant results matching to the search term entered.</p>
                         <div class="card-list" style="margin-bottom: 20px;">
                             <ng-container *ngFor="let card of recipes">
                                 <div class="card" style="margin-top: 20px; height: 12rem;" id="card-{{ card.id }}">
