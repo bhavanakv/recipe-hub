@@ -6,7 +6,6 @@ import { Recipe } from './recipe';
 })
 export class RecipeService {
 
-  private dbName = 'RecipesDB';
   private storeName = 'recipes';
 
   constructor() { }
@@ -51,14 +50,19 @@ export class RecipeService {
     Function to add default recipes to the database if the database is empty
   */
   async addDefaultRecipes() {
-    const db = await this.openDB('RecipesDB', 2);
+    console.log("Adding recipes");
+    const db = await this.openDB('RecipesDB', 3);
+    console.log("DB opened");
     const transaction = await db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
+    console.log("Store opened");
     // List of default recipes if database is empty
     const defaultRecipes = [{
       name: 'Tart Pecan Pie',
+      description: 'An American dessert with a sweet, gooey filling made from pecans, sugar, and butter, baked in a flaky crust for a nutty, caramelized delight.',
       time: 50,
       cuisine: 'American',
+      imageUrl: 'tartPecan.jpeg',
       ingredients: ['Pecans', 'Butter', 'Sugar', 'Eggs', 'Vanilla extract', 'Corn syrup', 'Salt', 'Pie crust'],
       steps: ['Preheat oven', 'Prepare pie crust', 'Mix ingredients', 'Pour into pie crust', 'Bake'],
       difficulty: 2.8,
@@ -80,8 +84,10 @@ export class RecipeService {
     },
     {
       name: 'Pesto Pasta',
+      description: 'Pasta tossed in a vibrant green sauce made from basil, garlic, nuts, and cheese, offering a herbaceous and nutty flavor.',
       time: 50,
       cuisine: 'Italian',
+      imageUrl: 'pesto-pasta.jpg',
       ingredients: ['Pasta', 'Basil leaves', 'Pine nuts', 'Garlic', 'Olive oil', 'Parmesan cheese', 'Salt', 'Pepper'],
       steps: ['Boil pasta', 'Prepare pesto sauce', 'Mix pasta and sauce', 'Season with cheese, salt, and pepper'],
       difficulty: 1.2,
@@ -103,8 +109,10 @@ export class RecipeService {
     },
     {
       name: 'Butter Chicken',
+      description: 'A creamy, mildly spiced Indian dish featuring tender chicken simmered in a rich tomato-based sauce.',
       time: 75,
       cuisine: 'Indian',
+      imageUrl: 'butter-chicken.jpg',
       ingredients: ['Chicken', 'Yogurt', 'Tomato sauce', 'Cream', 'Butter', 'Spices', 'Onions', 'Garlic'],
       steps: ['Marinate chicken', 'Cook onions and spices', 'Add chicken and sauces', 'Simmer', 'Garnish'],
       difficulty: 1.8,
@@ -125,6 +133,7 @@ export class RecipeService {
       }
     }];
     const recordCount = store.getAll();
+    console.log("Fetched record count");
     // Add the default recipes only if the length of the database is 0
     recordCount.onsuccess = (event) => {
       const records = recordCount.result;
@@ -143,7 +152,7 @@ export class RecipeService {
   */
   async addRecipe(recipe: any): Promise<void> {
     console.log("Trying to add");
-    const db = await this.openDB('RecipesDB', 2);
+    const db = await this.openDB('RecipesDB', 3);
     const transaction = db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
     delete recipe['id'];
@@ -156,7 +165,7 @@ export class RecipeService {
     @param: recipe to be deleted
   */
   async deleteRecipe(recipe: any): Promise<void> {
-    const db = await this.openDB('RecipesDB', 2);
+    const db = await this.openDB('RecipesDB', 3);
     const transaction = db.transaction([this.storeName], 'readwrite');
     const store = transaction.objectStore(this.storeName);
     // Deleting the recipe from the database
@@ -167,7 +176,7 @@ export class RecipeService {
     Function to fetch all the recipes from the database
   */
   async getAllRecipes(): Promise<any[]> {
-    const db = await this.openDB('RecipesDB', 2);
+    const db = await this.openDB('RecipesDB', 3);
     const transaction = db.transaction([this.storeName], 'readonly');
     const store = transaction.objectStore(this.storeName);
     // Retrieving all the recipes from the database
@@ -184,7 +193,7 @@ export class RecipeService {
     @param: ID of the recipe to be fetched
   */
   async getRecipeById(id: number): Promise<Recipe | undefined> {
-    const db = await this.openDB('RecipesDB', 2);
+    const db = await this.openDB('RecipesDB', 3);
     const transaction = db.transaction([this.storeName], 'readonly');
     const store = transaction.objectStore(this.storeName);
     // Fetching recipe based on ID passed from UI
@@ -216,7 +225,8 @@ export class RecipeService {
         'username': username,
         'author': recipe.author,
         'name': recipe.name,
-        'time': recipe.time
+        'time': recipe.time,
+        'imageUrl': recipe.imageUrl
       }
       store.add(toSaveRecipe);
       return true;

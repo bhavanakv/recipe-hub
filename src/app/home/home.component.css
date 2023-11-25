@@ -108,3 +108,8 @@ ul li a {
   font-size: 12px;
   color: #999;
 }
+
+.card {
+  flex: 1; /* Shrink and grow according to available height */
+  flex-basis: 0;
+}

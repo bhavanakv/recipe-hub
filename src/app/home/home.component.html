@@ -31,8 +31,8 @@
             <div class="row justify-content-center">
                 <div class="card-list">
                     <ng-container *ngFor="let card of recipes">
-                        <div class="card" style="margin-left: 15px; margin-bottom: 50px; width: 18rem;">
-                            <img src="assets/{{ card.imageUrl }}" alt="{{ card.name }}" class="card-image">
+                        <div class="card" style="margin-left: 15px; margin-bottom: 50px; width: 18rem; height: 18 rem;">
+                            <img src="assets/{{ card.imageUrl }}" alt="{{ card.name }}" class="card-image" style="height: 15rem;">
                             <div class="card-body">
                                 <h5 class="card-title">{{ card.name }}</h5>
                                 <p class="card-text">{{ card.description }}</p>
