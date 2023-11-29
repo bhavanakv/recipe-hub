@@ -2,7 +2,7 @@
 <div class="recipe-container">
     <ng-container *ngIf="loggedIn">
         <div class="sidebar">
-            <app-sidebar *ngIf="loggedIn"></app-sidebar>
+            <app-sidebar *ngIf="loggedIn" rname="{{ recipe.name }}" id="{{ recipe.id }}"></app-sidebar>
         </div>
     </ng-container>
 <div class="row main-content">

@@ -23,9 +23,9 @@ export class StackedChartComponent {
     // Creating dataset array needed for the chart
     this.labels.forEach(element => {
       dataset[i] = {
-        label: element,
+        label: element, // Label from recipe detail page
         backgroundColor: backgroundColors[i],
-        data: [this.data[i]]
+        data: [this.data[i]] // Data from recipe detail page
       }
       i++;
     });

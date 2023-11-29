@@ -19,11 +19,11 @@ export class BarChartComponent {
       this.barChart = new Chart("barChart", {
       type: 'bar', 
       data: {
-        labels: this.labels, 
+        labels: this.labels, // Labels from recipe detail page
         datasets: [
           {
             label: "Recipe cost in dollars",
-            data: this.data,
+            data: this.data, // Data from recipe detail page
             backgroundColor: '#D7BDE2'
           }  
         ] 

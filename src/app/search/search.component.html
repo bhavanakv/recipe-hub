@@ -13,7 +13,12 @@
                         <option value="3">Cooking time</option>
                         <option value="4">Difficulty</option>
                       </select>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" id="searchTerm" #searchTerm>    
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" id="searchTerm" #searchTerm>  
+                    <div class="autocomplete-suggestions" [ngClass]="suggestionsVisible ? 'show' : 'hide'">
+                        <ul>
+                            <li *ngFor="let suggestion of filteredSuggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+                        </ul>
+                    </div>  
                     <button class="button-field" type="button" data-action="codemirror#submit"
                         class="btn btn-success btn-sm" (click)="search(searchTerm, sort)" data-bs-toggle="tooltip" title="Search for recipes" data-bs-placement="bottom">
                         <i class="bi bi-search"></i>
@@ -22,7 +27,7 @@
                 <div class="search-recipes">
                     <div class="row justify-content-center">
                         <p class="text-center" *ngIf="showEmptyMessage">No relevant results matching to the search term entered.</p>
-                        <div class="card-list" style="margin-bottom: 20px;">
+                        <div class="card-list" style="margin-bottom: 20px;" *ngIf="showSearchResults">
                             <ng-container *ngFor="let card of recipes">
                                 <div class="card" style="margin-top: 20px; height: 12rem;" id="card-{{ card.id }}">
                                     <div class="row no-gutters">

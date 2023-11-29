@@ -22,10 +22,10 @@ export class PieChartComponent {
     this.chart = new Chart("nutritionChart", {
       type: 'pie', 
       data: {
-        labels: this.labels,
+        labels: this.labels, // Labels from recipe detail page
         datasets: [{
-          data: this.data,
-          backgroundColor: colorsToFill,
+          data: this.data, // Data from recipe detail page
+          backgroundColor: colorsToFill, // Colors to fill the pie chart from list
           hoverOffset: 4
         }],
       },

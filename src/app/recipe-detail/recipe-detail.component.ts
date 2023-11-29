@@ -82,14 +82,21 @@ export class RecipeDetailComponent {
     });
   }
 
+  /* 
+    Function to save recipe into the user's collection
+  */
   async saveRecipe() {
     let username = '';
+    // Fetching the username from localStorage
     if(localStorage.hasOwnProperty("username")) {
       username = localStorage.getItem('username') + '';
     }
+    // Saving the recipe to savedRecipes database
     let response = await this.recipeService.saveRecipe(this.recipe, username);
     if(response) {
+      // If successful response is obtained, then display success toast otherwise display error toast
       this.successToast = true;
+      // Remove toasts after 2 sec
       setTimeout(() => {
         this.errorToast = false;
         this.successToast = false;
@@ -97,6 +104,7 @@ export class RecipeDetailComponent {
     }
     else {
       this.errorToast = true;
+      // Remove toasts after 2 sec
       setTimeout(() => {
         this.errorToast = false;
         this.successToast = false;

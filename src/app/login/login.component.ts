@@ -28,7 +28,9 @@ export class LoginComponent {
 
     // Validating if username and password are entered or not
     if(name == '' || password == '') {
+      // Display error toast
       this.errorToast = true;
+      // After 2 sec, remove the toast displayed
       setTimeout(() => {
         this.successToast = false;
         this.errorToast = false;
@@ -49,6 +51,7 @@ export class LoginComponent {
       // If the credentials do not match, then display error message
       else {
         this.errorToast = true;
+        // After 2 sec, remove the toast
         setTimeout(() => {
           this.successToast = false;
           this.errorToast = false;
@@ -61,6 +64,7 @@ export class LoginComponent {
         // Storing the username in localStorage to use in HomeComponent
         localStorage.clear();
         localStorage.setItem('username', this.username);
+        // After 2 sec, move to home page
         setTimeout(() => {
           this.errorToast = false;
           this.successToast = false;

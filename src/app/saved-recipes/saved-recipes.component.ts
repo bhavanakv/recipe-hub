@@ -20,6 +20,7 @@ export class SavedRecipesComponent {
 
   async ngOnInit() {
     let username = '';
+    // Fetching username from localStorage
     if(localStorage.hasOwnProperty('username')) {
       username = localStorage.getItem('username') + ""; 
     }
@@ -27,6 +28,7 @@ export class SavedRecipesComponent {
     this.recipeService.getSavedRecipes(username).then(recipes => {
       this.recipes = recipes;
       console.log(this.recipes);
+      // If there are no saved recipes, then display empty data message
       if(this.recipes.length == 0) {
         this.showEmptyMessage = true;
       }
@@ -39,15 +41,19 @@ export class SavedRecipesComponent {
   */
   removeRecipe(id: number) {
     console.log("Removing recipe", id);
+    // Fetching the id of the card to be deleted
     const cardElement = document.getElementById("card-"+id);
     if(cardElement) {
+      // Removing the card from UI
       cardElement.parentElement!.removeChild(cardElement);
     }
+    // Deleting from database
     this.recipeService.deleteSavedRecipe(id);
     let username = '';
     if(localStorage.hasOwnProperty('username')) {
       username = localStorage.getItem('username') + ""; 
     }
+    // Displaying empty data message if all recipes are removed
     this.recipeService.getSavedRecipes(username).then(recipes => {
       if(recipes.length == 0) {
         this.showEmptyMessage = true;

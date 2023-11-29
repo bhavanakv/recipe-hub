@@ -8,21 +8,33 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
 export class SearchComponent {
 
   @Input() searchKeyFromHome: string = '';
 
   recipes: Recipe[] = [];
   sortedRecipes: Recipe[] = [];
+  allRecipes: Recipe[] = [];
   showEmptyMessage: boolean = false;
+  showSearchResults: boolean = false;
+  suggestionsVisible: boolean = false;
+  filteredSuggestions: string[] = [];
+
   constructor(private recipeService: RecipeService, private router: Router) {
     
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.showEmptyMessage = false;
     console.log("Calling from home reached");
     this.searchFromHome();
+    // Fetching all recipes from database
+    await this.getAllRecipes();
+    const searchInput = document.getElementById("searchTerm");
+    if(searchInput) {
+      searchInput.addEventListener("keyup", this.handleSearchTermChange.bind(this));
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -34,10 +46,82 @@ export class SearchComponent {
   }
 
   /* 
+    Function to fetch all the recipes from database
+  */
+  async getAllRecipes() {
+    const getRecipesPromise: Promise<Recipe[]> = this.recipeService.getAllRecipes();
+    getRecipesPromise.then((recipeData) => {
+      // Converting the promise to list of Recipe objects
+      this.allRecipes = recipeData.map((recipeData) => {
+        return {
+          id: recipeData.id,
+          name: recipeData.name,
+          description: recipeData.description,
+          time: recipeData.time,
+          cuisine: recipeData.cuisine,
+          imageUrl: recipeData.imageUrl,
+          ingredients: recipeData.ingredients,
+          steps: recipeData.steps,
+          difficulty: recipeData.difficulty,
+          author: recipeData.author,
+          prepTime: recipeData.prepTime,
+          cookingTime: recipeData.cookingTime,
+          pieChart: recipeData.pieChart,
+          barChart: recipeData.barChart,
+          stackedChart: recipeData.stackedChart
+        }
+      })
+    });
+  }
+
+  /* 
+    Function to handle event listener when keys are pressed.
+    When keys are pressed, then corresponding recipes are returned as suggestions and they are made visible.
+    @param: keyboard event
+  */
+  handleSearchTermChange(event: KeyboardEvent) {
+    console.log("Key Pressed");
+    if(event.target) {
+      // Fetching the search term from input field
+      const searchTerm = (event.target as HTMLInputElement).value;
+
+    // If the length is 0, then suggestions are removed and not made visible
+    if (searchTerm.length === 0) {
+      this.filteredSuggestions = [];
+      this.suggestionsVisible = false;
+      return;
+    }
+    
+    // If not, then recipes are filtered based on the search term entered and made visible
+    this.filteredSuggestions = this.allRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm.toLowerCase())).map(recipe => recipe.name);
+    console.log(this.filteredSuggestions);
+    this.suggestionsVisible = this.filteredSuggestions.length > 0;
+  }
+    
+  }
+
+  /* 
+    Function to set suggestion clicked as the text in input field
+    @param: suggestion clicked
+  */
+  selectSuggestion(suggestion: string) {
+    console.log("Suggested selected: ", suggestion);
+    const searchInput = document.getElementById("searchTerm");
+    // Setting the suggestion clicked as the text of input field
+    if(searchInput) {
+      (searchInput as HTMLInputElement).value = suggestion;
+    }
+    // Removing the suggestions and hiding them
+    this.filteredSuggestions = [];
+    this.suggestionsVisible = false;
+  }
+
+  /* 
     Function to search for recipes based on the search term entered
     @param: searchKey and sorting type
   */
   searchEngine(searchKey: string, sortType: number) {
+    this.showSearchResults = true;
     const getRecipesPromise: Promise<Recipe[]> = this.recipeService.getAllRecipes();
     getRecipesPromise.then((recipeData) => {
       // Sorting the recipes based on the order entered from user
@@ -91,6 +175,7 @@ export class SearchComponent {
       // If there are no recipes found, then corresponding message is displayed
       if(this.recipes.length == 0) {
         this.showEmptyMessage = true;
+        this.showSearchResults = false;
       }
     });
   }
@@ -110,6 +195,7 @@ export class SearchComponent {
     @param: search and sort HTML elements
   */
   search(searchTerm: HTMLInputElement, sort: HTMLSelectElement) {
+    this.suggestionsVisible = false;
     this.showEmptyMessage = false;
     // Fetching the search term and sorting type from the HTML elements
     const searchKey = searchTerm.value

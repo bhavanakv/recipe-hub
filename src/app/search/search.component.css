@@ -17,4 +17,35 @@
     width: 80%;
     margin-left: 60px;
 }
-  
+
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 40px;
+    left: 120px;
+    width: 370px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: black;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 99999;
+}
+
+.autocomplete-suggestions ul {
+    margin: 0;
+    padding: 0;
+}
+
+.autocomplete-suggestions li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.autocomplete-suggestions li:hover {
+    background-color: #cfcdcd;
+}
+
+.hide {
+    display: none;
+}

@@ -18,6 +18,7 @@ export class MeterComponent {
   */
   createChart() {
     this.meter = new Chart("difficultyMeter", {
+      // Fixed chart to denote difficulty meter
       type: 'doughnut',
       data: {
         labels: ["Easy","Intermediate","Difficult",],
@@ -51,6 +52,7 @@ export class MeterComponent {
     if(document.getElementById('difficultyNeedle') != null){
       this.difficultyNeedle = document.getElementById('difficultyNeedle');
     }
+    // Adding the needle to meter
     this.updateDifficultyNeedle();
   }
 

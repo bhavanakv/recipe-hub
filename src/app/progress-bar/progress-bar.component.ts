@@ -15,7 +15,6 @@ export class ProgressBarComponent {
 
   createChart() {
     const labels = "Timeline";
-    console.log(this.prepTime);
     this.progressChart = new Chart("timelineChart", {
       type: 'line',
       data: {
@@ -23,7 +22,7 @@ export class ProgressBarComponent {
         datasets: [
           {
             label: 'Preparation time',
-            data: [{ x: 0, y: 0 }, { x: this.prepTime, y: 1 }],
+            data: [{ x: 0, y: 0 }, { x: this.prepTime, y: 1 }], // Preparation time from 0 to prepTime
             backgroundColor: "#F9E79F",
             borderColor: "#F9E79F",
             borderWidth: 7,
@@ -31,7 +30,7 @@ export class ProgressBarComponent {
           },
           {
             label: 'Cooking time',
-            data: [{ x: this.prepTime, y: 1 }, { x: this.prepTime+this.cookingTime, y: 1}],
+            data: [{ x: this.prepTime, y: 1 }, { x: this.prepTime+this.cookingTime, y: 1}], // Cooking time from prepTime to prepTime+cookingTime
             backgroundColor: "#A9CCE3",
             borderColor: "#A9CCE3",
             borderWidth: 7,

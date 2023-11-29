@@ -20,12 +20,15 @@ export class NavbarComponent {
   
   ngOnInit() {
     if(localStorage.hasOwnProperty("username")) {
+      // Display logout button if the user is logged in
       this.showLogoutButton = true;
     }
   }
 
   confirmLogout(): void {
+    // Removing the username if logged out
     localStorage.clear();
+    // Reloading the page after logout is done
     setTimeout(() => {
       window.location.reload();
     });

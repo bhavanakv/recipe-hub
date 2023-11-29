@@ -15,8 +15,13 @@
                     </p>
                 </div>
                 <div class="input-group">
-                    <input class="input-field" type="text" class="form-control" placeholder="Enter a search keyword"
+                    <input class="input-field" id="searchInput" type="text" class="form-control" placeholder="Enter a search keyword"
                         aria-label="searchKey" aria-describedby="basic-addon1" #searchTerm>
+                    <div class="autocomplete-suggestions" [ngClass]="suggestionsVisible ? 'show' : 'hide'">
+                        <ul>
+                            <li *ngFor="let suggestion of filteredSuggestions" (click)="selectSuggestion(suggestion)">{{ suggestion }}</li>
+                        </ul>
+                    </div>
                     <button class="button-field" type="button" data-action="codemirror#submit"
                         class="btn btn-success btn-sm" (click)="search(searchTerm)" data-bs-toggle="tooltip" title="Search for recipes" data-bs-placement="bottom">
                         <i class="bi bi-search"></i>

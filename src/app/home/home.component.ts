@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
 
   recipes: Recipe[];
@@ -18,6 +19,8 @@ export class HomeComponent {
   twitterUrl: string = 'https://www.twitter.com/recipehub';
   instagramUrl: string = 'https://www.instagram.com/recipehub';
   searchResults: boolean = false;
+  suggestionsVisible: boolean = false;
+  filteredSuggestions: string[] = [];
 
   constructor(private recipeService: RecipeService, private router: Router) {
     this.recipes = [];
@@ -59,6 +62,13 @@ export class HomeComponent {
     else {
       this.headerString = "Do you like cooking?"
     }
+
+    // Checking if keys are pressed in the search input element. If pressed, then recipes are suggested
+    const searchInput = document.getElementById("searchInput");
+    if(searchInput) {
+      // Adding event listener to handle the event when keys are pressed. If pressed, then calling the function to 
+      searchInput.addEventListener("keyup", this.handleSearchTermChange.bind(this));
+    }
   }
 
   /*
@@ -69,10 +79,56 @@ export class HomeComponent {
     this.router.navigate(["/recipe", id])
   }
 
+  /* 
+    Event listener function to handle key press. 
+    When key is pressed, recipes that match the search term are returned
+    @param: Keyboard event
+  */
+  handleSearchTermChange(event: KeyboardEvent) {
+    console.log("Key Pressed");
+    if(event.target) {
+      //Fetching the value from the input field
+      const searchTerm = (event.target as HTMLInputElement).value;
+
+    //If the search term length is 0, then there are no suggestions and they are not visible
+    if (searchTerm.length === 0) {
+      this.filteredSuggestions = [];
+      this.suggestionsVisible = false;
+      return;
+    }
+    
+    // Otherwise, the recipes are filtered based on the search term entered and visibility is set true
+    this.filteredSuggestions = this.recipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm)).map(recipe => recipe.name);
+    this.suggestionsVisible = this.filteredSuggestions.length > 0;
+  }
+    
+  }
+
+  /* 
+    Function to remove the suggestions and set visibility false
+    @param: suggestion clicked
+  */
+  selectSuggestion(suggestion: string) {
+    console.log("Suggested selected: ", suggestion);
+    const searchInput = document.getElementById("searchInput");
+    if(searchInput) {
+      // Suggestion selected in set as text value for input field
+      (searchInput as HTMLInputElement).value = suggestion;
+    }
+    // Once selected, the suggestions are removed and visibility is set false
+    this.filteredSuggestions = [];
+    this.suggestionsVisible = false;
+  }
+
+  /* 
+    Function to set search term as empty string once submitted
+    @param: search term input element
+  */
   search(searchTerm: HTMLInputElement) {
     console.log("Searching for: ", searchTerm.value);
     setTimeout(() => {
       searchTerm.value = '';
+      this.suggestionsVisible = false;
     }, 100);
     this.searchResults = true;
   }

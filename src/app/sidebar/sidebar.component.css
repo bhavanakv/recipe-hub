@@ -37,11 +37,14 @@
     content: '';
     position: absolute;
     top: 50%;
-    right: 10px; /* Adjust as needed for positioning */
+    right: 10px; 
     transform: translateY(-50%);
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background-color: #f89223; /* Circle color */
-    /* Add additional styling for your indicator */
+  }
+
+  ul {
+    list-style-type: none;
   }

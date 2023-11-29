@@ -2,6 +2,11 @@
     <ul class="nav flex-column">
       <li class="nav-item">
         <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Go to home page" data-bs-placement="bottom"><i class="bi bi-house"></i> Home</a>
+        <ul>
+          <li class="nav-item">
+            <a routerLink="/recipe/{{ id }}" routerLinkActive="active" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Recipe details" data-bs-placement="bottom" *ngIf="showRecipeName"> {{ rname }}</a>
+          </li>
+        </ul>
       </li>
       <li class="nav-item">
         <a routerLink="/submit-recipe" routerLinkActive="active" ariaCurrentWhenActive="page" data-bs-toggle="tooltip" title="Add your recipes to the collection" data-bs-placement="bottom"><i class="bi bi-card-text"></i> Submit Recipe</a>
