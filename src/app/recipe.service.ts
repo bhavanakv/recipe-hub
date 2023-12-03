@@ -228,6 +228,7 @@ export class RecipeService {
         'time': recipe.time,
         'imageUrl': recipe.imageUrl
       }
+      console.log(toSaveRecipe);
       store.add(toSaveRecipe);
       return true;
     }

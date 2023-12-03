@@ -1,6 +1,6 @@
 <div class="search-recipe-container" style="margin-top: 40px; margin-bottom: 20px;">
     <div class="row main-content justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="card mt-6">
                 <h3 class="card-title text-center" style="padding-top:50px; color: #f89223"><strong>Search Results</strong></h3>
                 <p class="text-center">Delicacies based on the search keyword entered</p>
@@ -32,7 +32,7 @@
                                 <div class="card" style="margin-top: 20px; height: 12rem;" id="card-{{ card.id }}">
                                     <div class="row no-gutters">
                                         <div class="col-md-4">
-                                            <img src="assets/butter-chicken.jpg" style="height: 12rem; width: 20rem;" class="img-fluid" alt="{{ card.name }}">
+                                            <img src="assets/{{ card.imageUrl }}" style="height: 12rem; width: 20rem;" class="img-fluid" alt="{{ card.name }}">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-block px-2">

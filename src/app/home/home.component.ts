@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
 
   recipes: Recipe[];
+  allRecipes: Recipe[];
   headerString: string = '';
   showSideBar: boolean = false;
   logoUrl: string = 'assets/logo.png';
@@ -24,7 +25,37 @@ export class HomeComponent {
 
   constructor(private recipeService: RecipeService, private router: Router) {
     this.recipes = [];
+    this.allRecipes = [];
   }
+
+  /* 
+    Function to fetch all the recipes from database
+  */
+    async getAllRecipes() {
+      const getRecipesPromise: Promise<Recipe[]> = this.recipeService.getAllRecipes();
+      getRecipesPromise.then((recipeData) => {
+        // Converting the promise to list of Recipe objects
+        this.allRecipes = recipeData.map((recipeData) => {
+          return {
+            id: recipeData.id,
+            name: recipeData.name,
+            description: recipeData.description,
+            time: recipeData.time,
+            cuisine: recipeData.cuisine,
+            imageUrl: recipeData.imageUrl,
+            ingredients: recipeData.ingredients,
+            steps: recipeData.steps,
+            difficulty: recipeData.difficulty,
+            author: recipeData.author,
+            prepTime: recipeData.prepTime,
+            cookingTime: recipeData.cookingTime,
+            pieChart: recipeData.pieChart,
+            barChart: recipeData.barChart,
+            stackedChart: recipeData.stackedChart
+          }
+        })
+      });
+    }
 
   async ngOnInit() {
     await this.recipeService.addDefaultRecipes();
@@ -52,6 +83,9 @@ export class HomeComponent {
         }
       })
     });
+
+    // Fetching all recipes for autosuggestion in search bar
+    this.getAllRecipes();
 
     // Displaying the name of the user on home page after successful login.
     // Picking the username from localStorage
@@ -98,7 +132,7 @@ export class HomeComponent {
     }
     
     // Otherwise, the recipes are filtered based on the search term entered and visibility is set true
-    this.filteredSuggestions = this.recipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm)).map(recipe => recipe.name);
+    this.filteredSuggestions = this.allRecipes.filter(recipe => recipe.name.toLowerCase().includes(searchTerm)).map(recipe => recipe.name);
     this.suggestionsVisible = this.filteredSuggestions.length > 0;
   }
     

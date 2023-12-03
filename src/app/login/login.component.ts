@@ -48,6 +48,9 @@ export class LoginComponent {
       else if(name == 'teja' && password == '123') {
         this.username = "Bhanutheja";
       }
+      else if(name == 'george' && password == '12345678') {
+        this.username = "George";
+      }
       // If the credentials do not match, then display error message
       else {
         this.errorToast = true;
